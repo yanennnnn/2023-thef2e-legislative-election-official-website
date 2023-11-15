@@ -1,5 +1,6 @@
 import { ButtonHTMLAttributes } from "react";
 import styled from "styled-components";
+import { Link, LinkProps } from "react-router-dom";
 
 // 定義主題屬性的型別
 interface Theme {
@@ -21,15 +22,18 @@ interface Themes {
   orangeBorder: Theme;
   blueText: Theme;
 }
-
 // 定義按鈕組件的屬性，包含 React 提供的 HTML 按鈕屬性以及主題屬性
 interface IProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode | string;
-  theme?: keyof Themes; // 使用 keyof 確保 theme 只能是 Themes 中的一個主題
+  theme?: keyof Themes; // 使用 keyof 確保 theme 只能是 Themes 中的一個主題;
+  buttonType?: string | undefined;
+  linkTo?: string | undefined;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  disabled?: boolean;
 }
 
 // 使用 styled-components 創建按鈕組件，接受主題屬性
-const Button = styled.button<{ theme?: Theme }>`
+const StyledButton = styled(Link)<{ theme?: Theme, to?: string }>`
   background: ${props => props.theme?.bg || "#3670C7"};
   border-radius: 50px;
   border: none;
@@ -47,8 +51,9 @@ const Button = styled.button<{ theme?: Theme }>`
   }
 `;
 
+
 // 定義不同主題的屬性
-const themes: Themes = {
+const themes: { [key: string]: Theme } = {
   blue: {
     bg: "#3670C7",
     color: "#ffffff",
@@ -105,14 +110,18 @@ const themes: Themes = {
   }
 };
 
+
 // 創建 BaseButton 組件，接受主題屬性並使用對應的主題風格
 function BaseButton(props: IProps) {
-  const { children, theme = 'primary', ...rest } = props;
-
-  return (
-    <Button theme={themes[theme]} {...rest}>
+  const { children, theme = 'primary', buttonType, linkTo, ...rest } = props;
+  return buttonType === 'link' ? (
+    <StyledButton theme={themes[theme]} to={linkTo!} {...rest as LinkProps}>
       {children}
-    </Button>
+    </StyledButton>
+  ) : (
+    <StyledButton as="button" theme={themes[theme]} {...rest}>
+      {children}
+    </StyledButton>
   );
 }
 

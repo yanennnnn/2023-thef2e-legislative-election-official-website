@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import logo from "@/assets/logo.svg"
+import Logo from '@/assets/logo.svg?react';
 import { useRef, useEffect } from 'react';
 const HeaderContainer = styled.nav `
   height: 102px;
@@ -53,14 +53,16 @@ const routerLink = [
 function Header() {
   const headerRef = useRef<HTMLElement | null>(null);
   useEffect(()=> {
-    window.addEventListener("scroll", ()=> {
+    const scroolEvent = () => {
       const heightTop = headerRef.current;
       if(window.scrollY > 0 && heightTop) {
         heightTop!.classList.add("bg-white");
       } else {
         heightTop!.classList.remove("bg-white");
       }
-    });
+    }
+    window.addEventListener("scroll", scroolEvent);
+    return () => window.removeEventListener("scroll", scroolEvent);
   },[])
   return (
     <>
@@ -75,7 +77,7 @@ function Header() {
             ].join(' ')
           }
         >
-          <StyledLogo src={logo} alt="logo" />
+          <Logo stroke="#3670C7"/>
         </NavLink>
         {routerLink.map((item) => (
           <StyledLink key={item.title} to={item.path}>
