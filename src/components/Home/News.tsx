@@ -145,7 +145,6 @@ function Top() {
     <>
       <section style={{
         backgroundColor: '#D9E8FF',
-        height: '881px',
       }}>
         <Container>
           <Row>
