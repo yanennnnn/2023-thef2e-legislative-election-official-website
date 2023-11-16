@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Row from "@/components/Row"
 import NewsItem from "@/components/NewsItem"
 interface IProps {
   list: Iitem[];
