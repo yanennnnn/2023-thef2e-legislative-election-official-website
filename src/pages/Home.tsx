@@ -2,6 +2,7 @@ import Top from '@/components/Home/Top'
 import News from '@/components/Home/News'
 import Notice from '@/components/Home/Notice'
 import Policy from '@/components/Home/Policy'
+import Marquee from '@/components/Home/Marquee'
 function Home() {
 
   return (
@@ -10,6 +11,7 @@ function Home() {
       <News/>
       <Notice/>
       <Policy/>
+      <Marquee/>
     </>
   )
 }
