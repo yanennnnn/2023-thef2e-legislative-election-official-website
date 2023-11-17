@@ -26,7 +26,7 @@ function newsList(props: IProps) {
   const { list } = props;
   return (
     <StyledSList>{list.map((item: Iitem)=> (
-      <NewsItem item={item} isHome></NewsItem>
+      <NewsItem item={item} isHome key={item.id}></NewsItem>
     ))}</StyledSList>
   );
 }

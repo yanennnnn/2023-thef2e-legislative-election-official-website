@@ -50,6 +50,11 @@ const StyledButton = styled(Link)<{ theme?: Theme, to?: string }>`
     background: ${props => props.theme?.hoverBg || "#222222"};
     border: 1px solid ${props => props.theme?.hoverBorder || 'transparent'};
   }
+  &.disabled {
+    color: #fff;
+    background: #B9B9B9;
+    border-color: transparent;
+  }
 `;
 
 

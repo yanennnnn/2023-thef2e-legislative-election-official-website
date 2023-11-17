@@ -67,7 +67,7 @@ function Policy() {
         <BaseSectionTitle>政治議題</BaseSectionTitle>
         <Row className="ploicyList">
           { list.map((item: Iitem)=>(
-            <div className="ploicyItem">
+            <div className="ploicyItem"  key={item.path}>
                <PolicyItem item={ item }/>
             </div>
 
