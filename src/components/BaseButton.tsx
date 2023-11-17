@@ -44,6 +44,7 @@ const StyledButton = styled(Link)<{ theme?: Theme, to?: string }>`
   font-size: 16px;
   cursor: pointer;
   transition: .2s;
+  display: inline-block;
   &:hover {
     color: ${props => props.theme?.hoverColor || "#ffffff"};
     background: ${props => props.theme?.hoverBg || "#222222"};
@@ -115,11 +116,11 @@ const themes: { [key: string]: Theme } = {
 function BaseButton(props: IProps) {
   const { children, theme = 'primary', buttonType, linkTo, ...rest } = props;
   return buttonType === 'link' ? (
-    <StyledButton theme={themes[theme]} to={linkTo!} {...rest as LinkProps}>
+    <StyledButton className="baseButton" theme={themes[theme]} to={linkTo!} {...rest as LinkProps}>
       {children}
     </StyledButton>
   ) : (
-    <StyledButton as="button" theme={themes[theme]} {...rest}>
+    <StyledButton className="baseButton" as="button" theme={themes[theme]} {...rest}>
       {children}
     </StyledButton>
   );

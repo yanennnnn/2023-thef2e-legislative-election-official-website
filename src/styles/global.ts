@@ -5,6 +5,9 @@ const GlobalStyle = createGlobalStyle`
 //   font-family: 'Noto Sans TC';
 //   src: url(https://fonts.googleapis.com/css2?family=Agbalumo&family=Noto+Sans+TC:wght@400;500;700&display=swap);
 // }
+*, ::after, ::before {
+  box-sizing: border-box;
+}
 body {
   font-family: 'Noto Sans TC', system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
