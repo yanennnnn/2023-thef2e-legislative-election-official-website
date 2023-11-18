@@ -68,7 +68,7 @@ const policyList = [
 const StyledSwiper = styled(Swiper)`
   &.mySwiper {
     width: 100%;
-    height: 100vh;
+    height: calc(100vh - 110px);
     overflow: hidden;
   }
   position: relative;

@@ -28,7 +28,7 @@ background: #D9E8FF;
   background-size:cover;
   background-repeat:no-repeat;
   background-position: center;
-  height: 100vh;
+  height: calc(100vh - 109px);
   overflow: hidden;
   position: relative;
   z-index: 1;
@@ -58,18 +58,18 @@ background: #D9E8FF;
   &.serve {
     &:after {
       background-image: url('${policyBg1}');
-      width: 71%;
-      padding-bottom: 82%;
+      width: min(60vh, 650px);
+      padding-bottom: min(69vh, 667px);
       right: 0;
-      top: 50%;
+      top: 64%;
       transform: translateY(-50%);
     }
   }
   &.leisure {
     &:after {
       background-image: url('${policyBg2}');
-      width: 62%;
-      padding-bottom: 82%;
+      width: min(50vh, 700px);
+      padding-bottom: min(74vh, 703px);
       right: 0;
       top: 50%;
       transform: translateY(-50%);
@@ -78,8 +78,8 @@ background: #D9E8FF;
   &.educate {
     &:after {
       background-image: url('${policyBg3}');
-      width: 100%;
-      padding-bottom: 71%;
+      width: min(90vh, 750px);
+      padding-bottom: min(61vh, 538px);
       left: -16%;
       bottom: 0vh;
     }
@@ -87,8 +87,8 @@ background: #D9E8FF;
   &.impression {
     &:after {
       background-image: url('${policyBg4}');
-      width: 68.1%;
-      padding-bottom: 67%;
+      width: min(70vh, 500px);
+      padding-bottom: min(69vh, 492px);
       left: 0px;
       top: 3vh;
     }

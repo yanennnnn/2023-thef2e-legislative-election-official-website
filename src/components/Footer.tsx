@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 const StyledFooter = styled.footer`
-  padding: 32px 40px;
+  padding: 30px 40px;
   border-top: 1px solid  #B9B9B9;
   color: #595959;
   font-size:15px;
+  height: 106px;
   .bottom {
     font-size: 15px;
     display: flex;
