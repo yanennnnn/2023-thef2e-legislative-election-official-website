@@ -52,11 +52,11 @@ const StyledSItem = styled(Link)`
   }
 `
 
-function NewsItem({ item } : {item:Iitem }) {
+function NewsItem({ item, index } : {item:Iitem, index:number }) {
   return (
     <StyledSItem 
       key={item.path} 
-      to={`/ploicy?query=${item.path}`}
+      to={`/policy?query=${index}`}
       style={{
       backgroundImage: `url(${item.img})`
     }}>
@@ -65,7 +65,7 @@ function NewsItem({ item } : {item:Iitem }) {
         <BaseButton 
           theme="orangeBorder" 
           buttonType="link" 
-          linkTo={`/ploicy?query=${item.path}`}
+          linkTo={`/policy?query=${index}`}
         >
             了解更多
         </BaseButton>

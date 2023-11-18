@@ -16,6 +16,7 @@ import "swiper/css";
 import 'swiper/css/free-mode';
 import 'swiper/css/scrollbar';
 import 'swiper/css/navigation';
+import { useSearchParams } from "react-router-dom";
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 interface IPolicyItem {
@@ -76,6 +77,7 @@ const Navigation = styled.div`
   width: 80px;
   height: 80px;
   border-radius: 100%;
+  padding: 5px 0;
   border: 1px solid #787878;
   position: absolute;
   left: 50%;
@@ -84,21 +86,21 @@ const Navigation = styled.div`
   z-index: 3;
   display:flex;
   flex-direction: column;
-  justify-content:center;
+  justify-content:space-between;
   align-items:center;
   color: #787878;
   font-size: 14px;
   letter-spacing: .1em;
   .prev-arrow, .next-arrow {
     width: 20px;
-    height: 15px;
+    height: 20px;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items:center;
     &:hover {
       .iconPath {
-          stroke: #222222;
+          stroke: #3670C7;
       }
     }
   }
@@ -106,6 +108,10 @@ const Navigation = styled.div`
 function Policy() {
   const sliderRef = useRef(null);
   const [page, setPage] = useState(1)
+  const [searchParams] = useSearchParams();
+  const [query] = useState(
+    searchParams.get("query")
+  );
   const handlePrev = useCallback(() => {
     if (!sliderRef.current) return;
     sliderRef.current?.swiper.slidePrev();
@@ -115,9 +121,26 @@ function Policy() {
     if (!sliderRef.current) return;
     sliderRef.current?.swiper.slideNext();
   }, []);
-  useEffect(()=> {
-    console.log(sliderRef.current)
-  }, [sliderRef] )
+
+
+  useEffect(() => {
+    
+    const swiperInstance = sliderRef?.current.swiper;
+    console.log(swiperInstance)
+    if (swiperInstance) {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+      swiperInstance.slideTo(query,500)
+    }
+
+    return () => {
+      if (swiperInstance) {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+        swiperInstance.slideTo(query,500)
+      }
+    };
+  }, [query]);
   return (
     <StyledSwiper
     ref={sliderRef}

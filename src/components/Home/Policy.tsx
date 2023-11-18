@@ -66,9 +66,9 @@ function Policy() {
       <Container>
         <BaseSectionTitle>政治議題</BaseSectionTitle>
         <Row className="ploicyList">
-          { list.map((item: Iitem)=>(
+          { list.map((item: Iitem, index)=>(
             <div className="ploicyItem"  key={item.path}>
-               <PolicyItem item={ item }/>
+               <PolicyItem item={ item } index={index}/>
             </div>
 
           ))}
