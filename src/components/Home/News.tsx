@@ -4,7 +4,7 @@ import BaseButton from '@/components/BaseButton'
 import BaseSectionTitle from '@/components/BaseSectionTitle'
 import NewsList from '@/components/NewsList'
 const Container = styled.div`
- width: 1130px;
+ width: 1220px;px;
  max-width: 100%;
  margin: 0 auto;
  padding-left: 40px;
