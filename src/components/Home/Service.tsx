@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import BaseSectionTitle from '@/components/BaseSectionTitle'
-import Basebutton from '@/components/Basebutton'
+import Basebutton from '@/components/BaseButton'
 import React from 'react';
 
 const Container = styled.div`
