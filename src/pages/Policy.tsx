@@ -7,7 +7,17 @@ import policyBg1 from '@/assets/policyBg1.svg'
 import policyBg2 from '@/assets/policyBg2.svg'
 import policyBg3 from '@/assets/policyBg3.svg'
 import policyBg4 from '@/assets/policyBg4.svg'
+import ArrowTop from '@/assets/arrowTop.svg?react';
+import ArrowBottom from '@/assets/arrowBottom.svg?react'
 import SectonPage from '@/components/Policy/SectionPage'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Mousewheel } from 'swiper/modules';
+import "swiper/css";
+import 'swiper/css/free-mode';
+import 'swiper/css/scrollbar';
+import 'swiper/css/navigation';
+import { useCallback, useEffect, useRef, useState } from 'react';
+
 interface IPolicyItem {
   id: string;
   title: string;
@@ -54,15 +64,87 @@ const policyList = [
   }
 ];
 
-
+const StyledSwiper = styled(Swiper)`
+  &.mySwiper {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+  position: relative;
+`
+const Navigation = styled.div`
+  width: 80px;
+  height: 80px;
+  border-radius: 100%;
+  border: 1px solid #787878;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 50px;
+  z-index: 3;
+  display:flex;
+  flex-direction: column;
+  justify-content:center;
+  align-items:center;
+  color: #787878;
+  font-size: 14px;
+  letter-spacing: .1em;
+  .prev-arrow, .next-arrow {
+    width: 20px;
+    height: 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    &:hover {
+      .iconPath {
+          stroke: #222222;
+      }
+    }
+  }
+`
 function Policy() {
+  const sliderRef = useRef(null);
+  const [page, setPage] = useState(1)
+  const handlePrev = useCallback(() => {
+    if (!sliderRef.current) return;
+    sliderRef.current?.swiper.slidePrev();
+  }, []);
 
+  const handleNext = useCallback(() => {
+    if (!sliderRef.current) return;
+    sliderRef.current?.swiper.slideNext();
+  }, []);
+  useEffect(()=> {
+    console.log(sliderRef.current)
+  }, [sliderRef] )
   return (
-    <>
+    <StyledSwiper
+    ref={sliderRef}
+    direction={'vertical'}
+    mousewheel={{
+      thresholdTime: 1000,
+    }}
+    modules={[Mousewheel]}
+    className="mySwiper"
+    onSlideChange={() => setPage(sliderRef.current?.swiper?.activeIndex + 1)}
+      >
       { policyList.map((item:IPolicyItem, index)=> (
-        <SectonPage key={item.id} item={item} index={index}></SectonPage>
+        <SwiperSlide key={item.id}>
+          <SectonPage  item={item} index={index}></SectonPage>
+        </SwiperSlide>
       ))}
-    </>
+      <Navigation>
+        <div className="prev-arrow"  onClick={handlePrev}>
+          <ArrowTop/>
+        </div>
+          <div>{ page }/{policyList.length}</div>
+        <div className="next-arrow" onClick={handleNext}>
+          <ArrowBottom/>  
+        </div>
+      </Navigation>
+    </StyledSwiper>
+
   )
 }
 

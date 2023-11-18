@@ -15,7 +15,7 @@ interface IPolicyItem {
 }
 const StyledSectionPage = styled.section`
 background: #D9E8FF;
-height: 100%;
+// height: 100%;
 .row {
   margin-left: -15px;
   margin-right: -15px;
