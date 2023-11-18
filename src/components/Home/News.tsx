@@ -160,7 +160,7 @@ function Top() {
             </div>
             <div className="col left">
               <BaseSectionTitle>最新消息</BaseSectionTitle>
-              <NewsList list={newsListData}/>
+              <NewsList list={newsListData} isHome/>
             </div>
           </Row>
         </Container>

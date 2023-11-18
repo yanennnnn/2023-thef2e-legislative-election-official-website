@@ -11,7 +11,7 @@ interface Iitem {
 }
 
 const StyledSItem = styled.div`
-  padding: 24px 0;
+  padding: 48px 0;
   border-bottom: 1px solid #222222;
   .date {
     font-size: 24px;
@@ -37,16 +37,34 @@ const StyledSItem = styled.div`
         height: 100px
       }
     }
-    
+  }
+  .isPage {
+    .img {
+      width: 35% !important;
+    }
+    .content {
+      width: 65%;
+      display: flex;
+      justify-content: center;
+      flex-direction: column; 
+      .date {
+        font-size: 22px;
+      }
+      .title {
+        margin-top: 4px;
+        font-size: 24px;
+        margin-bottom: 8px;
+      }
+    }
   }
 `
 
 function NewsItem({ item, isHome = false } : {item:Iitem, isHome:boolean}) {
   return (
     <StyledSItem key={item.id}>
-      <Row className="newsList">
+      <Row className={`newsList ${isHome ? 'isHome' : 'isPage'}`}>
         <div className="col img">
-          <img src={isHome ? item.img : item.img2 } alt=""/>
+          <img src={item.img} alt=""/>
         </div>
         <div className="col content">
           <div className="date">{item.date}</div>

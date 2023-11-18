@@ -2,6 +2,7 @@ import styled from "styled-components";
 import NewsItem from "@/components/NewsItem"
 interface IProps {
   list: Iitem[];
+  isHome: boolean;
 }
 
 interface Iitem {
@@ -23,10 +24,10 @@ const StyledSList = styled.div`
 `
 
 function newsList(props: IProps) {
-  const { list } = props;
+  const { list, isHome = false } = props;
   return (
     <StyledSList>{list.map((item: Iitem)=> (
-      <NewsItem item={item} isHome key={item.id}></NewsItem>
+      <NewsItem item={item} isHome={ isHome } key={item.id}></NewsItem>
     ))}</StyledSList>
   );
 }
